@@ -1,4 +1,5 @@
-import express from 'express';import cors from 'cors';
+import express from 'express';
+import cors from 'cors';
 import {connectDB} from './Config/Db.js';
 import foodRouter from './Routes/foodRoute.js';
 import userRouter from './Routes/UserRoute.js';
@@ -8,7 +9,7 @@ import orderRouter from './Routes/OrderRoute.js';
 
 // App config
 const app = express();
-const port = process.env.PORT || 4000; // use logical OR (||) instead of bitwise OR (|)
+const PORT = process.env.PORT || 4000; // use logical OR (||) instead of bitwise OR (|)
 
 // Middleware
 app.use(express.json());
@@ -28,6 +29,6 @@ app.get('/', (req, res) => {
   res.send('API working');
 });
 
-app.listen(port, () => {
-  console.log(`Server started on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server started on http://localhost:${PORT}`);
 });
