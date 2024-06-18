@@ -1,5 +1,4 @@
-.place-order {
-  display: flex;
+.place-order {  display: flex;
   align-items: start;
   justify-content: space-between;
   gap: 50px;
@@ -36,4 +35,7 @@
 }
 .place-order .cart-total button {
   margin-top: 30px;
+}
+.place-order .cart-total button:last-child {
+  margin-top: 10px;
 }

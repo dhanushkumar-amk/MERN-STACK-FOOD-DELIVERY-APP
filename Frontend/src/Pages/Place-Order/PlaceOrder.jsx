@@ -4,7 +4,6 @@ import axios from 'axios';
 const PlaceOrder = () => {
   const {getTotalCartAmount, token, food_list, cartItems, url} =
     useContext(StoreContext);
-
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
@@ -42,13 +41,17 @@ const PlaceOrder = () => {
       headers: {token},
     });
     if (response.data.success) {
-      const {session_url} = response.data;
-      window.location.replace(session_url);
+      // const {session_url} = response.data;
+      // const frontend_url = 'http://localhost:5137';
+
+      alert('order success');
+      // window.location.replace(frontend_url);
+      
+      
     } else {
       alert('Error');
     }
   };
-
   return (
     <form
       onSubmit={placeOrder}
@@ -155,6 +158,7 @@ const PlaceOrder = () => {
             </div>
           </div>
           <button type='submit'>Proceed To Payment </button>
+          <button type='submit'>Cash on delivery</button>
         </div>
       </div>
     </form>
