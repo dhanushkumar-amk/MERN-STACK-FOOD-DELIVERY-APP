@@ -1,6 +1,8 @@
-import {useContext, useState} from 'react';import './PlaceOrder.css';
+import {useContext, useState} from 'react';
+import './PlaceOrder.css';
 import {StoreContext} from '../../Context/StoreContext';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 const PlaceOrder = () => {
   const {getTotalCartAmount, token, food_list, cartItems, url} =
     useContext(StoreContext);
@@ -43,13 +45,12 @@ const PlaceOrder = () => {
     if (response.data.success) {
       // const {session_url} = response.data;
       // const frontend_url = 'http://localhost:5137';
-
-      alert('order success');
+      alert('order successfully placed');
+      toast.success('order successfully placed');
       // window.location.replace(frontend_url);
-      
-      
     } else {
-      alert('Error');
+      alert('Some Problem on order');
+      toast.error('Some Problem on order');
     }
   };
   return (

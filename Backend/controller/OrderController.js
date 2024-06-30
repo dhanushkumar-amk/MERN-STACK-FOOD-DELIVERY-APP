@@ -1,5 +1,4 @@
-import orderModel from '../models/OrderModel.js';
-import userModel from '../models/UserModel.js';
+import orderModel from '../models/OrderModel.js';import userModel from '../models/UserModel.js';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRETKEY);
@@ -8,10 +7,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRETKEY);
 const placeOrder = async (req, res) => {
   const frontend_url = 'http://localhost:5137';
   try {
-    const { userId, items, amount, address } = req.body;
+    const {userId, items, amount, address} = req.body;
 
     if (!userId || !items || !amount || !address) {
-      return res.status(400).json({ success: false, message: 'Missing required fields' });
+      return res
+        .status(400)
+        .json({success: false, message: 'Missing required fields'});
     }
 
     const newOrder = new orderModel({
@@ -22,7 +23,7 @@ const placeOrder = async (req, res) => {
     });
 
     await newOrder.save();
-    await userModel.findByIdAndUpdate(userId, { cartData: {} });
+    await userModel.findByIdAndUpdate(userId, {cartData: {}});
 
     const line_items = items.map((item) => ({
       price_data: {
@@ -53,11 +54,11 @@ const placeOrder = async (req, res) => {
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
 
-    res.json({ success: true, session_url: session.url });
+    res.json({success: true, session_url: session.url});
   } catch (error) {
     console.error('Error placing order:', error.message);
-    res.status(500).json({ success: false, message: 'Internal server error' });
+    res.status(500).json({success: false, message: 'Internal server error'});
   }
 };
 
-export { placeOrder };
+export {placeOrder};
