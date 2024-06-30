@@ -1,4 +1,5 @@
-import express from 'express';import cors from 'cors';
+import express from 'express';
+import cors from 'cors';
 import {connectDB} from './Config/Db.js';
 import foodRouter from './Routes/foodRoute.js';
 import userRouter from './Routes/UserRoute.js';
@@ -8,7 +9,7 @@ import orderRouter from './Routes/OrderRoute.js';
 // App config
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 // middleware
 app.use(express.json());
